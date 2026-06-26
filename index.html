@@ -1126,7 +1126,12 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-10">
-                <form id="quoteForm" class="space-y-6">
+                <form id="quoteForm" action="https://formsubmit.co/jade.yang.trade@gmail.com" method="POST" class="space-y-6">
+                    <!-- FormSubmit.co config -->
+                    <input type="hidden" name="_subject" value="New Quote Request - MultiRad Landing Page">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://jasong1205.github.io/multirad-landing/thanks.html">
                     <!-- Row 1: Name & Email -->
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
@@ -1508,56 +1513,14 @@
                     return;
                 }
 
-                // Simulate submission (replace with actual form endpoint)
+                // Show loading state
                 if (submitBtn) submitBtn.disabled = true;
-                if (submitText) submitText.textContent = 'Submitting...';
+                if (submitText) submitText.textContent = 'Sending...';
                 if (submitArrow) submitArrow.classList.add('hidden');
                 if (submitSpinner) submitSpinner.classList.remove('hidden');
 
-                // Collect form data
-                var formData = {
-                    name: name.value.trim(),
-                    email: email.value.trim(),
-                    company: company.value.trim(),
-                    phone: document.getElementById('phone').value.trim(),
-                    product: product.value,
-                    engine: document.getElementById('engine').value,
-                    message: message.value.trim(),
-                    timestamp: new Date().toISOString()
-                };
-
-                // Log form data (for demo — replace with actual API call)
-                console.log('Quote Request:', formData);
-
-                // Simulate network delay, then show success
-                setTimeout(function() {
-                    quoteForm.style.display = 'none';
-                    if (formSuccess) formSuccess.classList.remove('hidden');
-
-                    // Scroll to success message
-                    if (formSuccess) {
-                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }, 1200);
-
-                // === FOR PRODUCTION: Replace the above with actual submission ===
-                // fetch('https://your-api-endpoint.com/quote', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(formData)
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     quoteForm.style.display = 'none';
-                //     formSuccess.classList.remove('hidden');
-                // })
-                // .catch(error => {
-                //     submitBtn.disabled = false;
-                //     submitText.textContent = 'Submit Request';
-                //     submitArrow.classList.remove('hidden');
-                //     submitSpinner.classList.add('hidden');
-                //     showToast('Submission failed. Please try again or email us directly.', 'error');
-                // });
+                // Submit to FormSubmit.co — redirects to thanks.html on success
+                quoteForm.submit();
             });
         }
 
