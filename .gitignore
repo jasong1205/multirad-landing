@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Unrelated project files
+Bearward/
+Bearward.zip
+MultiRad_Group_R59-2605.pdf
+
+# Logs
+*.log
